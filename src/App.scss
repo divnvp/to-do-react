@@ -5,17 +5,25 @@ body {
   font-family: Arial, serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 .app {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 30px;
 
   &-header {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     flex: 1;
+
+    height: 100%;
+
+    max-width: 20%;
   }
 
   &-main {
@@ -24,4 +32,93 @@ body {
     flex-wrap: wrap;
     flex: 1;
   }
+}
+
+.card {
+  box-shadow: 0 5px 10px rgba(211, 211, 211, 0.54);
+  border-radius: 10px;
+
+  padding: 20px;
+
+  z-index: 99;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 10px;
+  margin: 10px;
+
+  border-radius: 10px;
+
+  background-color: #f9f9f9;
+
+  &-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  &-title {
+    font-size: 14px;
+    color: black;
+    text-transform: uppercase;
+  }
+
+  &-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    margin-top: 10%;
+
+    span {
+      margin: 10px 0;
+    };
+  }
+}
+
+.task {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  padding: 10px 0;
+
+  font-size: 14px;
+}
+
+.button {
+  &_rounded {
+    border: none;
+    border-radius: 50%;
+
+    font-size: 18px;
+
+    &:hover {
+      background-color: lightgray;
+      color: white;
+    }
+  }
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 15px;
+  height: 15px;
 }
