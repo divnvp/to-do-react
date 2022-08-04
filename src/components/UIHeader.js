@@ -8,6 +8,10 @@ export function UIHeader(props) {
     props.select(taskId);
   }
 
+  const createNewTask = () => {
+    props.create();
+  }
+
   const listItems = props.tasks.map((task) =>
     <UITaskRow
       key={task.id}
@@ -27,7 +31,10 @@ export function UIHeader(props) {
 
       <UICard>
         <section className="nav-row">
-          <button className="button_rounded">
+          <button
+            onClick={createNewTask}
+            className="button_rounded"
+          >
             +
           </button>
         </section>

@@ -27,9 +27,11 @@ function App() {
   }
 
   const saveTask = (newTask) => {
-    const index = tasks.findIndex(t => t.id === newTask.id)
+    if (tasks.find(task => task.id === newTask.id)) {
+      const index = tasks.findIndex(t => t.id === newTask.id);
+      tasks.splice(index, 1);
+    }
 
-    tasks.splice(index, 1);
     tasks.push(newTask);
 
     setTasks(tasks);
@@ -37,11 +39,22 @@ function App() {
     window.location.reload();
   }
 
+  const createTask = () => {
+    setCurrentTaskId(tasks.length + 2);
+    setCurrentTaskName(" ");
+    setCurrentTaskStatus("waiting");
+    setCurrentTaskDate(new Date());
+  }
+
   return (
     <div>
       <div className="app">
         <header className="app-header">
-          <UIHeader tasks={tasks} select={selectItem} />
+          <UIHeader
+            tasks={tasks}
+            select={selectItem}
+            create={createTask}
+          />
         </header>
 
         <main className="app-main">

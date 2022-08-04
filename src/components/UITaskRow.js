@@ -5,11 +5,40 @@ export function UITaskRow(props) {
     props.clicked(props.taskId);
   }
 
+  const getColor = () => {
+    switch (props.taskStatus){
+      case "waiting":
+        return {color: "gray"};
+      case "process":
+        return {color: "blue"};
+      case "completed":
+        return {color: "lightgreen"};
+      default:
+        return {color: "black"};
+    }
+  }
+
+  const getStatus = () => {
+    switch (props.taskStatus){
+      case "waiting":
+        return "Ожидает";
+      case "process":
+        return "В процессе";
+      case "completed":
+        return "Выполнена";
+      default:
+        return "Неизвестно";
+    }
+  }
+
   return (
     <section className="task">
-      <UIIcon status={props.taskStatus} />
+      <label style={getColor()}>{ getStatus() }</label>
 
-      <button onClick={clicked} className="task__button">
+      <button
+        onClick={clicked}
+        className="task__button"
+      >
         {props.taskName}
       </button>
     </section>
