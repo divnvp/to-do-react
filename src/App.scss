@@ -76,14 +76,21 @@ button {
   &__panel {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: stretch;
+    flex: 1;
 
     margin-top: 5%;
 
     span {
       margin: 10px 0;
     };
+
+    &_items {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 }
 

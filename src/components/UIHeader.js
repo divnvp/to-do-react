@@ -40,7 +40,7 @@ export function UIHeader(props) {
         </section>
 
         <nav className="nav__panel">
-          <div>{listItems}</div>
+          <div className="nav__panel_items">{listItems}</div>
         </nav>
       </UICard>
     </div>

@@ -29,17 +29,25 @@ export function UITaskRow(props) {
     }
   }
 
+  const getName = () => {
+    if (props.taskName.length <= 10) {
+      return props.taskName;
+    } else {
+      return props.taskName.substring(0, 10) + "...";
+    }
+  }
+
   return (
     <section className="task">
       <label className="task__status" style={getColor()}>
-        { getStatus() }
+        {getStatus()}
       </label>
 
       <button
         onClick={clicked}
         className="task__button"
       >
-        {props.taskName}
+        {getName()}
       </button>
     </section>
   );
