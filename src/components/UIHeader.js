@@ -4,14 +4,24 @@ import { UITaskRow } from "./UITaskRow";
 import calendar from "../pictures/calendar.png"
 
 export function UIHeader(props) {
+  /**
+   * Функция для проброса наверх события выбора заметки
+   * @param {number} taskId - Значение ИД заметки
+   */
   const clicked = (taskId) => {
     props.select(taskId);
   }
 
+  /**
+   * Функция для проброса наверх события создания заметки
+   */
   const createNewTask = () => {
     props.create();
   }
 
+  /**
+   * @type {Array} listItems - Переменная для массива компонентов заметок
+   */
   const listItems = props.tasks.map((task) =>
     <UITaskRow
       key={task.id}

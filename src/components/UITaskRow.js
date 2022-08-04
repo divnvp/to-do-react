@@ -1,8 +1,14 @@
 export function UITaskRow(props) {
+  /**
+   * Функция для проброса наверх нажатия на заметку
+   */
   const clicked = () => {
     props.clicked(props.taskId);
   }
 
+  /**
+   * @return {CSSProperties | undefined} - Свойство для цвета текста
+   */
   const getColor = () => {
     switch (props.taskStatus){
       case "waiting":
@@ -16,6 +22,9 @@ export function UITaskRow(props) {
     }
   }
 
+  /**
+   * @return {string} - Название статуса по-русски
+   */
   const getStatus = () => {
     switch (props.taskStatus){
       case "waiting":
@@ -29,6 +38,9 @@ export function UITaskRow(props) {
     }
   }
 
+  /**
+   * @return {string} - Название заметки с ограниченной длиной
+   */
   const getName = () => {
     if (props.taskName.length <= 10) {
       return props.taskName;

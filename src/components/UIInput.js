@@ -1,4 +1,8 @@
 export function UIInput(props) {
+  /**
+   * Функция для обновления значения инпута
+   * @param {Event} e - Событие при прослушивании изменения инпута
+   */
   const updateInput = (e) => {
     props.updateInput(e);
   }

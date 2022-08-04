@@ -5,25 +5,57 @@ import { UIInput } from "./UIInput";
 import { UISelect } from "./UISelect";
 
 export function UIMain(props) {
+  /**
+   * Состояние для значения инпута
+   */
   const [ inputValue, setInputValue ] = useState("");
+  /**
+   * Состояние для значения статуса
+   */
   const [ statusValue, setStatusValue ] = useState("");
+  /**
+   * Состояние для определения, больше ли текущий ИД заметки последнего в заметках
+   */
+  const [ isCurrentIdMore, setIsCurrentIdMore ] = useState(false);
 
+  /**
+   * @type {Array} tasks - Переменная для массивов заметок из локального хранилища
+   */
   let tasks = JSON.parse(localStorage.getItem("tasks"));
+  /**
+   * @type {Object} task - Переменная для выбранной заметки
+   */
   let task = tasks.find(task => task.id === props.currentTaskId);
 
+  /**
+   * Слежение за значениями имени и статуса выбранной заметки
+   */
   useEffect(() => {
     setInputValue(props.currentTaskName || "");
     setStatusValue(props.currentTaskStatus || "");
-  }, [props.currentTaskName, props.currentTaskStatus]);
+    
+    setIsCurrentIdMore(props.currentTaskId > tasks[tasks.length - 1].id);
+  }, [props.currentTaskId, props.currentTaskName, props.currentTaskStatus]);
 
+  /**
+   * Функция обновления значения состояния для инпута
+   * @param {Event} e - Событие при прослушивании изменения селектора
+   */
   const updateInput = (e) => {
     setInputValue(e.target.value);
   }
 
+  /**
+   * Функция обновления значения состояния для статуса
+   * @param {Event} e - Событие при прослушивании изменения селектора
+   */
   const updateStatus = (e) => {
     setStatusValue(e.target.value);
   }
 
+  /**
+   * Функция для сохранения изменений в заметке
+   */
   const saveChanges = () => {
     props.save({
       id: props.currentTaskId,
@@ -33,10 +65,16 @@ export function UIMain(props) {
     })
   }
 
+  /**
+   * Функция для удаления заметки
+   */
   const deleteTask = () => {
     props.delete(props.currentTaskId);
   }
 
+  /**
+   * Функция для изменения заметки
+   */
   const cancelChanges = () => {
     setInputValue(task.name);
     setStatusValue(task.status);
@@ -68,12 +106,12 @@ export function UIMain(props) {
           />
 
           <section className="main__button">
-            <button
+            {!isCurrentIdMore && <button
               onClick={deleteTask}
               className="main__button_delete"
             >
               Удалить
-            </button>
+            </button>}
 
             <button
               onClick={cancelChanges}
