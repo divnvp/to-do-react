@@ -1,5 +1,3 @@
-import { UIIcon } from "./UIIcon";
-
 export function UITaskRow(props) {
   const clicked = () => {
     props.clicked(props.taskId);
@@ -33,7 +31,9 @@ export function UITaskRow(props) {
 
   return (
     <section className="task">
-      <label style={getColor()}>{ getStatus() }</label>
+      <label className="task__status" style={getColor()}>
+        { getStatus() }
+      </label>
 
       <button
         onClick={clicked}
