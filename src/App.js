@@ -32,18 +32,28 @@ function App() {
       tasks.splice(index, 1);
     }
 
-    tasks.push(newTask);
+    if (newTask.name.length > 1) {
+      tasks.push(newTask);
 
-    setTasks(tasks);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    window.location.reload();
+      setTasks(tasks);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      window.location.reload();
+    }
   }
 
   const createTask = () => {
-    setCurrentTaskId(tasks.length + 2);
+    setCurrentTaskId(tasks[tasks.length - 1].id + 1);
     setCurrentTaskName(" ");
     setCurrentTaskStatus("waiting");
     setCurrentTaskDate(new Date());
+  }
+
+  const deleteTask = (taskId) => {
+    const index = tasks.findIndex(t => t.id === taskId);
+    tasks.splice(index, 1);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    window.location.reload();
   }
 
   return (
@@ -65,6 +75,7 @@ function App() {
               currentTaskStatus={currentTaskStatus}
               currentTaskDate={currentTaskDate}
               save={saveTask}
+              delete={deleteTask}
             />
           }
         </main>

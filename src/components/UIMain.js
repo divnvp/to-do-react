@@ -33,6 +33,10 @@ export function UIMain(props) {
     })
   }
 
+  const deleteTask = () => {
+    props.delete(props.currentTaskId);
+  }
+
   const cancelChanges = () => {
     setInputValue(task.name);
     setStatusValue(task.status);
@@ -64,6 +68,13 @@ export function UIMain(props) {
           />
 
           <section className="main__button">
+            <button
+              onClick={deleteTask}
+              className="main__button_delete"
+            >
+              Удалить
+            </button>
+
             <button
               onClick={cancelChanges}
               className="main__button_cancel"
